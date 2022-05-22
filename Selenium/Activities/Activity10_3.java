@@ -2,7 +2,6 @@ package activities;
 
 import java.time.Duration;
 
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -25,10 +24,12 @@ public class Activity10_3 {
 		Actions action = new Actions(driver);
 		action.clickAndHold(driver.findElement(By.id("draggable"))).moveToElement(driver.findElement(By.id("droppable"))).release().build().perform();
 		String drop1 = driver.findElement(By.xpath("//*[@id='droppable']/p")).getText().trim();
-		Assert.assertEquals("Dropped!", drop1);
+		if(drop1.equals("Dropped!"))
+			System.out.println("Verified!!");
 		action.dragAndDrop(driver.findElement(By.id("draggable")), driver.findElement(By.id("dropzone2"))).build().perform();
 		String drop2 = driver.findElement(By.xpath("//*[@id='dropzone2']/p")).getText().trim();
-		Assert.assertEquals("Dropped!", drop2);
+		if(drop2.equals("Dropped!"))
+			System.out.println("Verified!!");
 		Thread.sleep(2000);
 		driver.close();
 	}
